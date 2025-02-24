@@ -32,7 +32,6 @@
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
         }
 
         .profile-img {
@@ -75,7 +74,7 @@
             text-decoration: none;
             color: white;
             font-size: 14px;
-            transition: opacity 0.2s;
+            transition: all 0.3s ease;
         }
 
         .social-link:hover {
@@ -95,130 +94,12 @@
         .telegram { background: #0088cc; }
         .youtube { background: #FF0000; }
         .tiktok { background: #000000; }
-
-        .edit-btn {
-            background: #4CAF50;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            margin-bottom: 10px;
-            transition: background-color 0.3s;
-        }
-
-        .edit-btn:hover {
-            background: #45a049;
-        }
-
-        .clear-btn {
-            background: #f44336;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .clear-btn:hover {
-            background: #da190b;
-        }
-
-        .edit-form {
-            display: none;
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-
-        .edit-form.show {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus {
-            border-color: #4CAF50;
-            outline: none;
-        }
-
-        .form-group input::placeholder {
-            color: #999;
-        }
-
-        .save-btn {
-            background: #2196F3;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            transition: background-color 0.3s;
-        }
-
-        .save-btn:hover {
-            background: #1976D2;
-        }
-
-        .status-message {
-            text-align: center;
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            display: none;
-            font-weight: bold;
-        }
-
-        .status-message.success {
-            background-color: #dff0d8;
-            color: #3c763d;
-            display: block;
-        }
-
-        .form-section {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-        }
-
-        .form-section-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 15px;
-        }
     </style>
-</head><body>
+</head>
+<body>
     <div class="container">
         <div class="business-card">
-            <img src="/api/placeholder/150/150" alt="รูปโปรไฟล์" class="profile-img" id="profile-preview">
+            <img src="https://f.ptcdn.info/436/061/000/pjrj2c5mopYbC19OZnWs-o.jpg" alt="รูปโปรไฟล์" class="profile-img" id="profile-preview">
             <div class="info">
                 <div class="name">
                     <span id="display-name">สมชาย</span>
@@ -227,251 +108,37 @@
                 <div class="position" id="display-position">นักพัฒนาซอฟต์แวร์</div>
                 <div class="phone" id="display-phone">089-123-4567</div>
                 <div class="social-links">
-                    <a href="#" class="social-link facebook" id="display-facebook" target="_blank">
+                    <a href="https://facebook.com/somchai.jaidee" class="social-link facebook" target="_blank">
                         <i class="fab fa-facebook"></i>
                         <span>Facebook</span>
                     </a>
-                    <a href="#" class="social-link line" id="display-line">
+                    <a href="https://line.me/ti/p/somchai.j" class="social-link line" target="_blank">
                         <i class="fab fa-line"></i>
                         <span>Line</span>
                     </a>
-                    <a href="#" class="social-link instagram" id="display-instagram" target="_blank">
+                    <a href="https://instagram.com/somchai.dev" class="social-link instagram" target="_blank">
                         <i class="fab fa-instagram"></i>
                         <span>Instagram</span>
                     </a>
-                    <a href="#" class="social-link twitter" id="display-twitter" target="_blank">
+                    <a href="https://twitter.com/somchai_dev" class="social-link twitter" target="_blank">
                         <i class="fab fa-twitter"></i>
                         <span>Twitter</span>
                     </a>
-                    <a href="#" class="social-link telegram" id="display-telegram" target="_blank">
+                    <a href="https://t.me/somchai_t" class="social-link telegram" target="_blank">
                         <i class="fab fa-telegram"></i>
                         <span>Telegram</span>
                     </a>
-                    <a href="#" class="social-link youtube" id="display-youtube" target="_blank">
+                    <a href="https://youtube.com/@somchaidev" class="social-link youtube" target="_blank">
                         <i class="fab fa-youtube"></i>
                         <span>YouTube</span>
                     </a>
-                    <a href="#" class="social-link tiktok" id="display-tiktok" target="_blank">
+                    <a href="https://tiktok.com/@somchai.dev" class="social-link tiktok" target="_blank">
                         <i class="fab fa-tiktok"></i>
                         <span>TikTok</span>
                     </a>
                 </div>
             </div>
-            <button class="edit-btn" onclick="toggleEdit()">แก้ไขข้อมูล</button>
-            <button class="clear-btn" onclick="clearData()">ล้างข้อมูลทั้งหมด</button>
-        </div>
-
-        <div class="edit-form" id="editForm">
-            <div class="form-section">
-                <div class="form-section-title">ข้อมูลส่วนตัว</div>
-                <div class="form-group">
-                    <label for="profile">รูปโปรไฟล์:</label>
-                    <input type="file" id="profile" accept="image/*" onchange="previewImage(this, 'profile-preview')">
-                </div>
-                <div class="form-group">
-                    <label for="name">ชื่อ:</label>
-                    <input type="text" id="name" placeholder="กรุณากรอกชื่อ">
-                </div>
-                <div class="form-group">
-                    <label for="surname">นามสกุล:</label>
-                    <input type="text" id="surname" placeholder="กรุณากรอกนามสกุล">
-                </div>
-                <div class="form-group">
-                    <label for="position">ตำแหน่ง:</label>
-                    <input type="text" id="position" placeholder="กรุณากรอกตำแหน่ง">
-                </div>
-                <div class="form-group">
-                    <label for="phone">เบอร์โทรศัพท์:</label>
-                    <input type="tel" id="phone" placeholder="กรุณากรอกเบอร์โทรศัพท์">
-                </div>
-            </div>
-
-            <div class="form-section">
-                <div class="form-section-title">โซเชียลมีเดีย</div>
-                <div class="form-group">
-                    <label for="facebook">Facebook:</label>
-                    <input type="url" id="facebook" placeholder="https://facebook.com/your.profile">
-                </div>
-                <div class="form-group">
-                    <label for="line">Line ID:</label>
-                    <input type="text" id="line" placeholder="กรุณากรอก Line ID">
-                </div>
-                <div class="form-group">
-                    <label for="instagram">Instagram:</label>
-                    <input type="text" id="instagram" placeholder="@your.instagram">
-                </div>
-                <div class="form-group">
-                    <label for="twitter">Twitter/X:</label>
-                    <input type="text" id="twitter" placeholder="@your.twitter">
-                </div>
-                <div class="form-group">
-                    <label for="telegram">Telegram:</label>
-                    <input type="text" id="telegram" placeholder="@your.telegram">
-                </div>
-                <div class="form-group">
-                    <label for="youtube">YouTube Channel:</label>
-                    <input type="url" id="youtube" placeholder="https://youtube.com/@your.channel">
-                </div>
-                <div class="form-group">
-                    <label for="tiktok">TikTok:</label>
-                    <input type="text" id="tiktok" placeholder="@your.tiktok">
-                </div>
-            </div>
-            <button class="save-btn" onclick="saveChanges()">บันทึก</button>
-            <div id="statusMessage" class="status-message"></div>
         </div>
     </div>
-
-    <script>
-        // ข้อมูลตัวอย่าง
-        let cardData = {
-            name: 'สมชาย',
-            surname: 'ใจดี',
-            position: 'นักพัฒนาซอฟต์แวร์',
-            phone: '089-123-4567',
-            profileImage: '/api/placeholder/150/150',
-            facebook: 'https://facebook.com/somchai.jaidee',
-            line: 'somchai.j',
-            instagram: '@somchai.dev',
-            twitter: '@somchai_dev',
-            telegram: '@somchai_t',
-            youtube: 'https://youtube.com/@somchaidev',
-            tiktok: '@somchai.dev'
-        };
-
-        // โหลดข้อมูลเมื่อเปิดหน้าเว็บ
-        window.addEventListener('load', loadData);
-
-        function toggleEdit() {
-            const form = document.getElementById('editForm');
-            form.classList.toggle('show');
-            
-            if (form.classList.contains('show')) {
-                const fields = [
-                    'name', 'surname', 'position', 'phone',
-                    'facebook', 'line', 'instagram', 'twitter',
-                    'telegram', 'youtube', 'tiktok'
-                ];
-                fields.forEach(field => {
-                    const input = document.getElementById(field);
-                    input.value = cardData[field] || '';
-                });
-            }
-        }
-
-        function previewImage(input, previewId) {
-            const preview = document.getElementById(previewId);
-            const file = input.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    preview.src = e.target.result;
-                    cardData.profileImage = e.target.result;
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function updateSocialLink(field, value) {
-            const link = document.getElementById(`display-${field}`);
-            if (value) {
-                let href = value;
-                if (if (field === 'instagram') href = `https://instagram.com/${value.replace('@', '')}`;
-                if (field === 'twitter') href = `https://twitter.com/${value.replace('@', '')}`;
-                if (field === 'tiktok') href = `https://tiktok.com/${value}`;
-                if (field === 'line') href = `https://line.me/ti/p/${value}`;
-                if (field === 'telegram') href = `https://t.me/${value.replace('@', '')}`;
-                link.href = href;
-                link.style.display = 'flex';
-            } else {
-                link.style.display = 'none';
-            }
-        }
-
-        function saveChanges() {
-            const fields = [
-                'name', 'surname', 'position', 'phone',
-                'facebook', 'line', 'instagram', 'twitter',
-                'telegram', 'youtube', 'tiktok'
-            ];
-            
-            fields.forEach(field => {
-                const input = document.getElementById(field);
-                if (input.value) {
-                    cardData[field] = input.value;
-                    if (['name', 'surname', 'position', 'phone'].includes(field)) {
-                        document.getElementById(`display-${field}`).textContent = input.value;
-                    } else {
-                        updateSocialLink(field, input.value);
-                    }
-                }
-            });
-
-            const statusMessage = document.getElementById('statusMessage');
-            statusMessage.textContent = 'บันทึกข้อมูลเรียบร้อยแล้ว';
-            statusMessage.classList.add('success');
-            
-            setTimeout(() => {
-                statusMessage.classList.remove('success');
-                statusMessage.textContent = '';
-                toggleEdit();
-            }, 3000);
-        }
-
-        function loadData() {
-            const fields = ['name', 'surname', 'position', 'phone'];
-            fields.forEach(field => {
-                const display = document.getElementById(`display-${field}`);
-                display.textContent = cardData[field] || '';
-            });
-
-            document.getElementById('profile-preview').src = cardData.profileImage;
-
-            // อัพเดทลิงก์โซเชียลมีเดีย
-            const socialFields = ['facebook', 'line', 'instagram', 'twitter', 'telegram', 'youtube', 'tiktok'];
-            socialFields.forEach(field => {
-                updateSocialLink(field, cardData[field]);
-            });
-        }
-
-        function clearData() {
-            if (confirm('คุณต้องการล้างข้อมูลทั้งหมดใช่หรือไม่?')) {
-                // รีเซ็ตข้อมูล
-                cardData = {
-                    name: '',
-                    surname: '',
-                    position: '',
-                    phone: '',
-                    profileImage: '/api/placeholder/150/150',
-                    facebook: '',
-                    line: '',
-                    instagram: '',
-                    twitter: '',
-                    telegram: '',
-                    youtube: '',
-                    tiktok: ''
-                };
-                
-                // รีเซ็ตการแสดงผล
-                loadData();
-                
-                // ล้างข้อมูลในฟอร์ม
-                const fields = [
-                    'name', 'surname', 'position', 'phone',
-                    'facebook', 'line', 'instagram', 'twitter',
-                    'telegram', 'youtube', 'tiktok'
-                ];
-                fields.forEach(field => {
-                    const input = document.getElementById(field);
-                    input.value = '';
-                });
-                
-                // รีเซ็ตรูปภาพ
-                document.getElementById('profile-preview').src = '/api/placeholder/150/150';
-                
-                alert('ล้างข้อมูลเรียบร้อยแล้ว');
-            }
-        }
-    </script>
 </body>
 </html>
