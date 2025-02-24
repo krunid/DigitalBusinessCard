@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>นามบัตรดิจิทัล - Digital Business Card</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+        }
+        
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        .business-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            display: block;
+        }
+
+        .info {
+            text-align: center;
+        }
+
+        .name {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .position, .phone {
+            margin: 8px 0;
+            color: #666;
+        }
+
+        .qr-code {
+            width: 150px;
+            height: 150px;
+            margin: 15px auto;
+            display: block;
+        }
+
+        .edit-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .clear-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .edit-form {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .edit-form.show {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .save-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .status-message {
+            text-align: center;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .status-message.success {
+            background-color: #dff0d8;
+            color: #3c763d;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="business-card">
+            <img src="/api/placeholder/150/150" alt="รูปโปรไฟล์" class="profile-img" id="profile-preview">
+            <div class="info">
+                <div class="name">
+                    <span id="display-name">ชื่อ</span>
+                    <span id="display-surname">นามสกุล</span>
+                </div>
+                <div class="position" id="display-position">ตำแหน่ง</div>
+                <div class="phone" id="display-phone">เบอร์โทรศัพท์</div>
+                <img src="/api/placeholder/150/150" alt="QR Code" class="qr-code" id="qr-preview">
+            </div>
+            <button class="edit-btn" onclick="toggleEdit()">แก้ไขข้อมูล</button>
+            <button class="clear-btn" onclick="clearData()">ล้างข้อมูลทั้งหมด</button>
+        </div>
+
+        <div class="edit-form" id="editForm">
+            <div class="form-group">
+                <label for="profile">รูปโปรไฟล์:</label>
+                <input type="file" id="profile" accept="image/*" onchange="previewImage(this, 'profile-preview')">
+            </div>
+            <div class="form-group">
+                <label for="name">ชื่อ:</label>
+                <input type="text" id="name" placeholder="กรุณากรอกชื่อ">
+            </div>
+            <div class="form-group">
+                <label for="surname">นามสกุล:</label>
+                <input type="text" id="surname" placeholder="กรุณากรอกนามสกุล">
+            </div>
+            <div class="form-group">
+                <label for="position">ตำแหน่ง:</label>
+                <input type="text" id="position" placeholder="กรุณากรอกตำแหน่ง">
+            </div>
+            <div class="form-group">
+                <label for="phone">เบอร์โทรศัพท์:</label>
+                <input type="tel" id="phone" placeholder="กรุณากรอกเบอร์โทรศัพท์">
+            </div>
+            <div class="form-group">
+                <label for="qr">QR Code (เพิ่มเพื่อน):</label>
+                <input type="file" id="qr" accept="image/*" onchange="previewImage(this, 'qr-preview')">
+            </div>
+            <button class="save-btn" onclick="saveChanges()">บันทึก</button>
+            <div id="statusMessage" class="status-message"></div>
+        </div>
+    </div>
+
+    <script>
+        // ใช้ตัวแปรเก็บข้อมูลแทน localStorage
+        let cardData = {
+            name: 'ชื่อ',
+            surname: 'นามสกุล',
+            position: 'ตำแหน่ง',
+            phone: 'เบอร์โทรศัพท์',
+            profileImage: '/api/placeholder/150/150',
+            qrImage: '/api/placeholder/150/150'
+        };
+
+        // โหลดข้อมูลเมื่อเปิดหน้าเว็บ
+        window.addEventListener('load', loadData);
+
+        function toggleEdit() {
+            const form = document.getElementById('editForm');
+            form.classList.toggle('show');
+            
+            // โหลดข้อมูลเดิมเข้าฟอร์ม
+            if (form.classList.contains('show')) {
+                const fields = ['name', 'surname', 'position', 'phone'];
+                fields.forEach(field => {
+                    const input = document.getElementById(field);
+                    input.value = cardData[field] !== field ? cardData[field] : '';
+                });
+            }
+        }
+
+        function previewImage(input, previewId) {
+            const preview = document.getElementById(previewId);
+            const file = input.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    // เก็บข้อมูลรูปภาพ
+                    if (previewId === 'profile-preview') {
+                        cardData.profileImage = e.target.result;
+                    } else {
+                        cardData.qrImage = e.target.result;
+                    }
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function saveChanges() {
+            const fields = ['name', 'surname', 'position', 'phone'];
+            
+            // บันทึกข้อมูล
+            fields.forEach(field => {
+                const input = document.getElementById(field);
+                const display = document.getElementById(`display-${field}`);
+                if (input.value) {
+                    cardData[field] = input.value;
+                    display.textContent = input.value;
+                }
+            });
+
+            // แสดงข้อความแจ้งเตือน
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.textContent = 'บันทึกข้อมูลเรียบร้อยแล้ว';
+            statusMessage.classList.add('success');
+            
+            // ซ่อนข้อความแจ้งเตือนหลังจาก 3 วินาที
+            setTimeout(() => {
+                statusMessage.classList.remove('success');
+                statusMessage.textContent = '';
+                toggleEdit();
+            }, 3000);
+        }
+
+        function loadData() {
+            const fields = ['name', 'surname', 'position', 'phone'];
+            fields.forEach(field => {
+                const display = document.getElementById(`display-${field}`);
+                display.textContent = cardData[field];
+            });
+
+            // โหลดรูปภาพ
+            document.getElementById('profile-preview').src = cardData.profileImage;
+            document.getElementById('qr-preview').src = cardData.qrImage;
+        }
+
+        function clearData() {
+            if (confirm('คุณต้องการล้างข้อมูลทั้งหมดใช่หรือไม่?')) {
+                // รีเซ็ตข้อมูล
+                cardData = {
+                    name: 'ชื่อ',
+                    surname: 'นามสกุล',
+                    position: 'ตำแหน่ง',
+                    phone: 'เบอร์โทรศัพท์',
+                    profileImage: '/api/placeholder/150/150',
+                    qrImage: '/api/placeholder/150/150'
+                };
+                
+                // รีเซ็ตการแสดงผล
+                loadData();
+                
+                alert('ล้างข้อมูลเรียบร้อยแล้ว');
+            }
+        }
+    </script>
+</body>
+</html>
